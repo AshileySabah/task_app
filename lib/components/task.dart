@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 
-class Task extends StatelessWidget {
+class Task extends StatefulWidget {
   final String name;
   final String imageUrl;
   final int difficulty;
 
-  const Task(
+  Task(
       {super.key,
       required this.name,
       required this.imageUrl,
       required this.difficulty});
+
+  @override
+  State<Task> createState() => _TaskState();
+}
+
+class _TaskState extends State<Task> {
+  int level = 0;
+
+  void handleIncrementLevel() {
+    setState(() {
+      level++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +33,7 @@ class Task extends StatelessWidget {
           Container(
             width: 350,
             height: 100,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(4), topRight: Radius.circular(4)),
                 color: Colors.white),
@@ -28,7 +41,7 @@ class Task extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image.network(
-                  imageUrl,
+                  widget.imageUrl,
                   width: 90,
                   height: 100,
                 ),
@@ -37,10 +50,10 @@ class Task extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      name,
+                      widget.name,
                       style: const TextStyle(fontSize: 20),
                     ),
-                    Text('Dificuldade: $difficulty')
+                    Text('Difficulty: ${widget.difficulty}')
                   ],
                 ),
                 ElevatedButton(
@@ -49,7 +62,7 @@ class Task extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4)),
                     ),
-                    onPressed: () {},
+                    onPressed: level == 10 ? null : handleIncrementLevel,
                     child: const Row(
                       children: [
                         Icon(
@@ -69,27 +82,27 @@ class Task extends StatelessWidget {
             width: 350,
             height: 40,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(4),
                     bottomRight: Radius.circular(4)),
-                color: Colors.blue),
-            child: const Row(
+                color: level == 10 ? Colors.green : Colors.blue),
+            child: Row(
               children: [
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: LinearProgressIndicator(
-                      value: 1 / 10,
+                      value: level / 10,
                       backgroundColor: Colors.white30,
                       color: Colors.white,
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Nivel: 1',
-                    style: TextStyle(color: Colors.white),
+                    'Level: $level',
+                    style: const TextStyle(color: Colors.white),
                   ),
                 )
               ],
