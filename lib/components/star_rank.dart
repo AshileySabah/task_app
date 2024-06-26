@@ -7,34 +7,16 @@ class StarRank extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> stars = List.generate(5, (index) {
+      return Icon(
+        Icons.star,
+        size: 16,
+        color: difficulty >= index ? Colors.blue : Colors.grey,
+      );
+    });
+
     return Row(
-      children: [
-        Icon(
-          Icons.star,
-          size: 16,
-          color: difficulty >= 1 ? Colors.blue : Colors.grey,
-        ),
-        Icon(
-          Icons.star,
-          size: 16,
-          color: difficulty >= 2 ? Colors.blue : Colors.grey,
-        ),
-        Icon(
-          Icons.star,
-          size: 16,
-          color: difficulty >= 3 ? Colors.blue : Colors.grey,
-        ),
-        Icon(
-          Icons.star,
-          size: 16,
-          color: difficulty >= 4 ? Colors.blue : Colors.grey,
-        ),
-        Icon(
-          Icons.star,
-          size: 16,
-          color: difficulty >= 5 ? Colors.blue : Colors.grey,
-        ),
-      ],
+      children: stars,
     );
   }
 }
