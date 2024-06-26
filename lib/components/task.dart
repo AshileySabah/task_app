@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_project/components/star_rank.dart';
 
 class Task extends StatefulWidget {
   final String name;
@@ -9,7 +10,7 @@ class Task extends StatefulWidget {
       {super.key,
       required this.name,
       required this.imageUrl,
-      required this.difficulty});
+      this.difficulty = 0});
 
   @override
   State<Task> createState() => _TaskState();
@@ -53,7 +54,9 @@ class _TaskState extends State<Task> {
                       widget.name,
                       style: const TextStyle(fontSize: 20),
                     ),
-                    Text('Difficulty: ${widget.difficulty}')
+                    StarRank(
+                      difficulty: widget.difficulty,
+                    )
                   ],
                 ),
                 ElevatedButton(
