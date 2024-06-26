@@ -47,8 +47,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView(
         children: [
-          const Column(
-            children: [Task(), Task()],
+          Column(
+            children: [
+              Task(
+                name: 'Flutter',
+                imageUrl:
+                    'https://cdn-images-1.medium.com/max/1200/1*5-aoK8IBmXve5whBQM90GA.png',
+                difficulty: 3,
+              ),
+              Task(
+                name: 'React',
+                imageUrl:
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcR5U16C8yXgBpl7-Bc7Itjx3_LRl425zINA&s',
+                difficulty: 2,
+              ),
+            ],
           )
         ],
       ),
